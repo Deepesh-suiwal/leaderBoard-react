@@ -1,0 +1,12 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .record {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 1rem;
+    padding: 1rem;
+  }
