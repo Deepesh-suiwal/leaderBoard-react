@@ -17,6 +17,14 @@ function First() {
       countryName: country,
       Score: score,
     };
+    if (fname === "" || lname === "" || country === "" || score === "") {
+      alert("Please fill all fields");
+      return;
+    }
+    else if(score<0){
+      alert("Please enter a positive score");
+      return;
+    }
 
     setTask((prevTask) => {
       const newTasks = [...prevTask, obj];
@@ -44,16 +52,21 @@ function First() {
     arraySort(task);
   }
 
-  function decrease5(idToModify) {
-    setTask(
-      task.map((obj) => {
-        if (obj.id === idToModify) {
-          obj.Score = Number(obj.Score) - 5;
+  function decrease5(idToModify, obj) {
+    if (obj.Score < 1) {
+      alert("Please enter a valid positive number for the score.");
+    } else {
+      setTask(
+        task.map((obj) => {
+          if (obj.id === idToModify) {
+            obj.Score = Number(obj.Score) - 5;
 
-          return obj;
-        } else return obj;
-      })
-    );
+            return obj;
+          } else return obj;
+        })
+      );
+    }
+
     arraySort(task);
   }
 
@@ -75,43 +88,45 @@ function First() {
 
   return (
     <>
-      <form action="" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="First name"
-          name="fname"
-          value={fname}
-          onChange={(e) => setFname(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Last name"
-          name="lname"
-          value={lname}
-          onChange={(e) => setLname(e.target.value)}
-        />
-        <select
-          name="country"
-          value={country}
-          id=""
-          onChange={(e) => setCountry(e.target.value)}
-        >
-          <option value="" disabled>
-            select country
-          </option>
-          <option value="india">India</option>
-          <option value="australia">Australia</option>
-          <option value="west indies">West indies</option>
-        </select>
-        <input
-          type="text"
-          placeholder="Score"
-          name="score"
-          value={score}
-          onChange={(e) => setScore(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <div className="parent">
+        <form action="" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="First name"
+            name="fname"
+            value={fname}
+            onChange={(e) => setFname(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Last name"
+            name="lname"
+            value={lname}
+            onChange={(e) => setLname(e.target.value)}
+          />
+          <select
+            name="country"
+            value={country}
+            id=""
+            onChange={(e) => setCountry(e.target.value)}
+          >
+            <option value="" disabled>
+              select country
+            </option>
+            <option value="india">India</option>
+            <option value="australia">Australia</option>
+            <option value="west indies">West indies</option>
+          </select>
+          <input
+            type="text"
+            placeholder="Score"
+            name="score"
+            value={score}
+            onChange={(e) => setScore(e.target.value)}
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
 
       <div id="leaderBoard">
         {task.map((obj) => {
@@ -121,8 +136,8 @@ function First() {
               <p>{obj.countryName}</p>
               <p>{obj.Score}</p>
               <p className="actions">
-                <span onClick={() => increase5(obj.id)}>+5</span>
-                <span onClick={() => decrease5(obj.id)}>-5</span>
+                <span onClick={() => increase5(obj.id, obj)}>+5</span>
+                <span onClick={() => decrease5(obj.id, obj)}>-5</span>
                 <FaTrash onClick={() => deleteData(obj.id)} />
               </p>
             </div>

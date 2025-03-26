@@ -1,12 +1,26 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-  .record {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin: 1rem;
-    padding: 1rem;
-  }
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.record {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1rem;
+  padding: 1rem;
+}
+body {
+  height: 713px;
+  width: 100%;
+  background-image: url("https://i.etsystatic.com/12444060/r/il/102842/1868655406/il_fullxfull.1868655406_3a9o.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
+}
+.leaderBoard{
+  height: auto;
+  width: 80%;
+  padding: 20px;
+}
